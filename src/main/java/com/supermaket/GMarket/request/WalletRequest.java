@@ -1,9 +1,6 @@
-package com.supermaket.GMarket.entityRequest;
+package com.supermaket.GMarket.request;
 
-import com.supermaket.GMarket.entity.User;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

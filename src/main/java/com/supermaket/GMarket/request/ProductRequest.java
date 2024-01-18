@@ -1,4 +1,4 @@
-package com.supermaket.GMarket.entityRequest;
+package com.supermaket.GMarket.request;
 
 import com.supermaket.GMarket.entity.Category;
 import io.swagger.v3.oas.annotations.media.Schema;

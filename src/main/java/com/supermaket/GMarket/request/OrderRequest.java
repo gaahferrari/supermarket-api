@@ -1,12 +1,7 @@
-package com.supermaket.GMarket.entityRequest;
+package com.supermaket.GMarket.request;
 
 import com.supermaket.GMarket.entity.Product;
-import com.supermaket.GMarket.entity.User;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
@@ -14,10 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
