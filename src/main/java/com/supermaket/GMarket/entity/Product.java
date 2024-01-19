@@ -6,10 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -58,4 +55,8 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "orders_fk")
     )
     private Set<Order> orders = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "favoriteProducts")
+    private List<User> favoriteByUsers = new ArrayList<>();
 }
