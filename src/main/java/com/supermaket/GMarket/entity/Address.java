@@ -1,7 +1,11 @@
 package com.supermaket.GMarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -11,24 +15,35 @@ import lombok.*;
 @Table(name = "address")
 public class Address {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        @OneToOne
-        @JoinColumn(name = "user_id", referencedColumnName = "id")
-        private User user;
+    @OneToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
-        private String streetName;
+    private String streetName;
 
-        private String number;
+    private String number;
 
-        private String CEP;
+    private String zipCode;
 
-        private String city;
+    private String city;
 
-        private String state;
+    private String state;
 
-        private String country;
+    private String country;
+
+    public void addUser(User user) {
+        if (user.getUserName().isBlank()) {
+            throw new IllegalArgumentException("O nome não pode estar em branco");
+        }
+        setUser(user);
+        user.setAddress(this);
+    }
+
+
 
 }

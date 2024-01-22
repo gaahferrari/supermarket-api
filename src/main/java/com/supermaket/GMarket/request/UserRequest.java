@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -36,10 +37,10 @@ public class UserRequest {
     @Schema(description = "Nome do usuário", example = "Franciscosantos123")
     private String userName;
 
-    @NotBlank(message = "A data de nascimento não pode estar em branco")
+    @Size(min = 3, max = 30, message = "O usuário deve ter entre 3 e 30 caracteres")
     @NotNull(message = "A data de nascimento não pode ser nulo")
     @Schema(description = "Data de nascimento", example = "06/02/2002")
-    private Date birthDate;
+    private String birthDate;
     @Size(min = 8, max = 15, message = "A senha deve ter entre 8 e 15 caracteres")
     @NotBlank(message = "A senha não pode estar em branco")
     @NotNull(message = "A senha não pode ser nulo")

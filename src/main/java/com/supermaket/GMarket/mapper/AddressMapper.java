@@ -16,7 +16,7 @@ public class AddressMapper {
     public static Address toAddress(AddressRequest request){
         return Address.builder()
                 .streetName(request.getStreetName())
-                .CEP(request.getCEP())
+                .zipCode(request.getZipCode())
                 .city(request.getCity())
                 .country(request.getCountry())
                 .state(request.getState())
@@ -27,7 +27,7 @@ public class AddressMapper {
     public static AddressDTO toDTO(Address address){
         return AddressDTO.builder()
                 .streetName(address.getStreetName())
-                .CEP(address.getCEP())
+                .zipCode(address.getZipCode())
                 .city(address.getCity())
                 .country(address.getCountry())
                 .state(address.getState())
@@ -35,6 +35,13 @@ public class AddressMapper {
                 .id(address.getId())
                 .userId(address.getUser().getId())
                 .build();
+    }
+
+    public static BaseBodyResponse<AddressDTO> toResponseDTO(Address address){
+        return BaseBodyResponse.<AddressDTO>builder()
+                .company("G-Market")
+                .description("O endereço do usuário " + address.getUser().getUserName() + " foi criado com sucesso!" )
+                .result(toDTO(address)).build();
     }
 
     public static BaseBodyResponse<Address> toResponse(Address address){

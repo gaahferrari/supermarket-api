@@ -9,16 +9,17 @@ import com.supermaket.GMarket.request.UserRequest;
 import com.supermaket.GMarket.responses.BaseBodyResponse;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserMapper {
 
-    public static User toUser (UserRequest user){
+    public static User toUser (UserRequest request){
         return User.builder()
-                .userName(user.getUserName())
-                .name(user.getName())
-                .lastName(user.getLastName())
-                .birthDate(user.getBirthDate())
-                .password(user.getPassword())
+                .userName(request.getUserName())
+                .name(request.getName())
+                .lastName(request.getLastName())
+                .birthDate(request.getBirthDate())
+                .password(request.getPassword())
                 .isAdmin(false)
                 .build();
     }
@@ -47,8 +48,7 @@ public class UserMapper {
                 .build();
     }
 
-    public static UserProductsDTO toProductsDTO(User user, List<Product> favoriteProducts){
-        List<ProductDTO> productDTO = favoriteProducts.stream().map(ProductMapper::toDTO).toList();
+    public static UserProductsDTO toProductsDTO(User user){
 
         return UserProductsDTO.builder()
                 .id(user.getId())
@@ -56,7 +56,7 @@ public class UserMapper {
                 .name(user.getName())
                 .lastName(user.getLastName())
                 .addressId(user.getAddress().getId())
-                .favoriteProductIds(productDTO)
+                .favoriteProductIds(user.getFavoriteProducts().stream().map(ProductMapper::toDTO).collect(Collectors.toList()))
                 .build();
     }
 
@@ -96,11 +96,11 @@ public class UserMapper {
                 .result(toOrdersDTO(user, orders)).build();
     }
 
-    public static BaseBodyResponse<UserProductsDTO> toResponseProductID(User user, List<Product> products){
+    public static BaseBodyResponse<UserProductsDTO> toResponseProductID(User user){
         return BaseBodyResponse.<UserProductsDTO>builder()
                 .company("G-Market")
                 .description("Produtos favoritos do usuário: " + user.getFavoriteProducts())
-                .result(toProductsDTO(user, products)).build();
+                .result(toProductsDTO(user)).build();
     }
 
     public static BaseBodyResponse<UserWalletDTO> toResponseWalletID(User user, List<Wallet> wallets){

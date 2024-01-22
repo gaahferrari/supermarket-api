@@ -36,11 +36,11 @@ public class ProductMapper {
     }
 
 
-    public static BaseBodyResponse<Product> toResponse(Product product){
-        return BaseBodyResponse.<Product>builder()
+    public static BaseBodyResponse<ProductDTO> toResponse(Product product){
+        return BaseBodyResponse.<ProductDTO>builder()
                 .company("G-Market")
                 .description("O produto " + product.getName() + " foi criado com sucesso!" )
-                .result(product).build();
+                .result(toDTO(product)).build();
     }
 
     public static BaseBodyResponse<List<ProductDTO>> toListResponse(List<Product> products){

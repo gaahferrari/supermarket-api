@@ -34,7 +34,7 @@ public class AddressRequest {
     @NotBlank(message = "O CEP não pode estar em branco")
     @NotNull(message = "O CEP não pode ser nulo")
     @Schema(description = "CEP da residência", example = "09791-101")
-    private String CEP;
+    private String zipCode;
 
     @Size(min = 4, max = 50, message = "A cidade deve ter entre 4 e 50 caracteres")
     @NotBlank(message = "A cidade  não pode estar em branco")

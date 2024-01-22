@@ -3,13 +3,15 @@ package com.supermaket.GMarket.mapper;
 import com.supermaket.GMarket.DTO.*;
 import com.supermaket.GMarket.entity.*;
 import com.supermaket.GMarket.request.AddressRequest;
+import com.supermaket.GMarket.request.CategoryRequest;
 import com.supermaket.GMarket.responses.BaseBodyResponse;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CategoryMapper {
 
-    public static Category toCategory(Category request){
+    public static Category toCategory(CategoryRequest request){
         return Category.builder()
                 .name(request.getName())
                 .build();
@@ -22,15 +24,15 @@ public class CategoryMapper {
                 .build();
     }
 
-    public static CategoryProductDTO toProductsDTO(Category category, List<Product> Products){
-        List<ProductDTO> productDTO = Products.stream().map(ProductMapper::toDTO).toList();
+    public static CategoryProductDTO toProductsDTO(Category category){
 
         return CategoryProductDTO.builder()
                 .name(category.getName())
-                .productsIds(productDTO)
                 .id(category.getId())
+                .productsIds(category.getProducts().stream().map(ProductMapper::toDTO).collect(Collectors.toList()))
                 .build();
     }
+
 
     public static BaseBodyResponse<Category> toResponse(Category category){
         return BaseBodyResponse.<Category>builder()
@@ -39,20 +41,21 @@ public class CategoryMapper {
                 .result(category).build();
     }
 
-    public static BaseBodyResponse<List<CategoryDTO>> toListResponse(List<Category> categories){
-        List<CategoryDTO> categoryDTOS = categories.stream().map(CategoryMapper::toDTO).toList();
-        return BaseBodyResponse.<List<CategoryDTO>>builder()
-                .company("G-Market")
-                .description("Lista de endereços do usuários")
-                .result(categoryDTOS)
+
+
+    public static BaseBodyResponse<CategoryProductDTO> toResponseProducts(Category category){
+        return BaseBodyResponse.<CategoryProductDTO>builder()
+                .company("Pizza Store")
+                .description("Um novo produto foi adicionado a categoria: " + category.getName())
+                .result(toProductsDTO(category)).build();
+    }
+
+    public static BaseBodyResponse<List<CategoryProductDTO>> toListResponse(List<Category> categories){
+        List<CategoryProductDTO> categoryProductDTOS = categories.stream().map(CategoryMapper::toProductsDTO).toList();
+        return BaseBodyResponse.<List<CategoryProductDTO>>builder()
+                .company("Pizza Store")
+                .description("Lista de Pizzas")
+                .result(categoryProductDTOS)
                 .build();
     }
-
-    public static BaseBodyResponse<CategoryProductDTO> toResponseProductID(Category category, List<Product> products){
-        return BaseBodyResponse.<CategoryProductDTO>builder()
-                .company("G-Market")
-                .description("Produtos da categoria: " + category.getProducts())
-                .result(toProductsDTO(category, products)).build();
-    }
-
 }

@@ -18,7 +18,7 @@ public class AddressDTO {
 
     private String number;
 
-    private String CEP;
+    private String zipCode;
 
     private String city;
 

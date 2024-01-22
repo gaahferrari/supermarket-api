@@ -1,8 +1,11 @@
 package com.supermaket.GMarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +29,7 @@ public class User {
 
     private String userName;
 
-    private Date birthDate;
+    private String birthDate;
 
     private String password;
 
@@ -49,4 +52,23 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private List<Product> favoriteProducts = new ArrayList<>();
+
+
+    public void addFavoriteProduct(Product product) {
+        if (product.getName().isBlank()) {
+            throw new IllegalArgumentException("O nome do produto não pode estar em branco");
+        }
+        favoriteProducts.add(product);
+        product.getFavoriteByUsers().add(this);
+    }
+
+    public boolean removeFavoriteProduct(Product product) {
+        if (this.favoriteProducts.isEmpty()) {
+            throw new IllegalStateException("A lista de produtos favoritos está vazia");
+        }
+        if (favoriteProducts.remove(product)) {
+            product.getFavoriteByUsers().remove(this);
+        }
+        return false;
+    }
 }

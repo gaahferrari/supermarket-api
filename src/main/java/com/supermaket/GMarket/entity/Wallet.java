@@ -3,6 +3,8 @@ package com.supermaket.GMarket.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -31,4 +33,12 @@ public class Wallet {
     private Boolean creditCard;
 
     private Boolean debitCard;
+
+    public void addUser(User user){
+        if(user.getUserName().isBlank()){
+            throw new IllegalArgumentException("O nome não pode estar em branco");
+        }
+        setUser(user);
+        user.setWallets((List<Wallet>) this);
+    }
 }

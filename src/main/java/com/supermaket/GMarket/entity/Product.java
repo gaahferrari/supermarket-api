@@ -59,4 +59,6 @@ public class Product {
     @JsonIgnore
     @ManyToMany(mappedBy = "favoriteProducts")
     private List<User> favoriteByUsers = new ArrayList<>();
+
+
 }

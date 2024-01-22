@@ -38,11 +38,11 @@ public class WalletMapper {
     }
 
 
-    public static BaseBodyResponse<Wallet> toResponse(Wallet wallet){
-        return BaseBodyResponse.<Wallet>builder()
+    public static BaseBodyResponse<WalletDTO> toResponse(Wallet wallet){
+        return BaseBodyResponse.<WalletDTO>builder()
                 .company("G-Market")
                 .description("O método de pagamento do usuário " + wallet.getUser().getUserName() + " foi criado com sucesso!" )
-                .result(wallet).build();
+                .result(toDTO(wallet)).build();
     }
 
     public static BaseBodyResponse<List<WalletDTO>> toListResponse(List<Wallet> wallets){

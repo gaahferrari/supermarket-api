@@ -44,16 +44,16 @@ public class OrderMapper {
                 .build();
     }
 
-    public static BaseBodyResponse<Order> toResponse(Order order){
-        return BaseBodyResponse.<Order>builder()
+    public static BaseBodyResponse<OrderDTO> toResponse(Order order){
+        return BaseBodyResponse.<OrderDTO>builder()
                 .company("G-Market")
                 .description("O pedido número " + order.getId() + " foi criado com sucesso!" )
-                .result(order).build();
+                .result(toDTO(order)).build();
     }
 
-    public static BaseBodyResponse<List<OrderDTO>> toListResponse(List<Order> orders){
-        List<OrderDTO> orderDTOS = orders.stream().map(OrderMapper::toDTO).toList();
-        return BaseBodyResponse.<List<OrderDTO>>builder()
+    public static BaseBodyResponse<List<OrderProductDTO>> toListResponse(List<Order> orders){
+        List<OrderProductDTO> orderDTOS = orders.stream().map(OrderMapper::toProductsDTO).toList();
+        return BaseBodyResponse.<List<OrderProductDTO>>builder()
                 .company("G-Market")
                 .description("Lista de pedidos realizados")
                 .result(orderDTOS)
