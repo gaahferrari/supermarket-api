@@ -1,8 +1,10 @@
 package com.supermaket.GMarket.controller;
 
+import com.supermaket.GMarket.DTO.AddressDTO;
 import com.supermaket.GMarket.DTO.OrderDTO;
 import com.supermaket.GMarket.DTO.OrderProductDTO;
 import com.supermaket.GMarket.DTO.ProductDTO;
+import com.supermaket.GMarket.request.AddressRequest;
 import com.supermaket.GMarket.request.OrderRequest;
 import com.supermaket.GMarket.request.ProductRequest;
 import com.supermaket.GMarket.responses.BaseBodyError;
@@ -61,5 +63,14 @@ public class ProductController {
     @GetMapping("/{id}")
     public BaseBodyResponse<ProductDTO> getProductById(@PathVariable Long id) {
         return productService.getById(id);
+    }
+
+    @Operation(summary = "Update product", description = "Update product", tags = {"products"}, responses = {
+            @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = BaseBodyError.class)))})
+    @PutMapping("/{id}")
+    public ResponseEntity<BaseBodyResponse<ProductDTO>> updateProduct(@RequestBody ProductRequest request, @PathVariable Long id) {
+        return ResponseEntity.status(200).body(productService.update( id, request));
     }
 }

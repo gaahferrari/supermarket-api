@@ -11,6 +11,7 @@ import com.supermaket.GMarket.request.ProductRequest;
 import com.supermaket.GMarket.responses.BaseBodyResponse;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductMapper {
     public static Product toProduct(ProductRequest request){
@@ -19,6 +20,7 @@ public class ProductMapper {
                 .price(request.getPrice())
                 .description(request.getDescription())
                 .image(request.getImage())
+                .inStock(true)
                 .build();
     }
 

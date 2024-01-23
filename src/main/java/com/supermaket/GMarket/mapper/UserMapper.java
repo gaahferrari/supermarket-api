@@ -43,6 +43,7 @@ public class UserMapper {
                 .userName(user.getUserName())
                 .name(user.getName())
                 .lastName(user.getLastName())
+                .birthDate(user.getBirthDate())
                 .addressId(user.getAddress().getId())
                 .orderIds(ordersDTO)
                 .build();
@@ -56,6 +57,7 @@ public class UserMapper {
                 .name(user.getName())
                 .lastName(user.getLastName())
                 .addressId(user.getAddress().getId())
+                .birthDate(user.getBirthDate())
                 .favoriteProductIds(user.getFavoriteProducts().stream().map(ProductMapper::toDTO).collect(Collectors.toList()))
                 .build();
     }
@@ -69,6 +71,7 @@ public class UserMapper {
                 .name(user.getName())
                 .lastName(user.getLastName())
                 .addressId(user.getAddress().getId())
+                .birthDate(user.getBirthDate())
                 .walletIds(walletDTO)
                 .build();
     }
@@ -99,7 +102,7 @@ public class UserMapper {
     public static BaseBodyResponse<UserProductsDTO> toResponseProductID(User user){
         return BaseBodyResponse.<UserProductsDTO>builder()
                 .company("G-Market")
-                .description("Produtos favoritos do usuário: " + user.getFavoriteProducts())
+                .description("Produtos favoritos do usuário: " + user.getUserName().toString())
                 .result(toProductsDTO(user)).build();
     }
 

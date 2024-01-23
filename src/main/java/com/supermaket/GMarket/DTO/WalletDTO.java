@@ -23,7 +23,7 @@ public class WalletDTO {
 
     private String cardOwnerName;
 
-    private String CVV;
+    private String securityCode;
 
     private Boolean creditCard;
 

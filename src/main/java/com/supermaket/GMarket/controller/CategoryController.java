@@ -69,7 +69,7 @@ public class CategoryController {
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = BaseBodyError.class)))})
 
-    @PutMapping("/{categoryId}/ingredients/{productId}")
+    @PutMapping("/{categoryId}/products/{productId}")
     public ResponseEntity<BaseBodyResponse<CategoryProductDTO>> addProductToCategory(@PathVariable Long categoryId, @PathVariable Long productId) {
         return ResponseEntity.status(201).body(categoryService.addProductsToCategory(categoryId, productId));
     }

@@ -1,5 +1,6 @@
 package com.supermaket.GMarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +20,7 @@ public class Wallet {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -28,7 +30,7 @@ public class Wallet {
 
     private String cardOwnerName;
 
-    private String CVV;
+    private String securityCode;
 
     private Boolean creditCard;
 
@@ -39,6 +41,6 @@ public class Wallet {
             throw new IllegalArgumentException("O nome não pode estar em branco");
         }
         setUser(user);
-        user.setWallets((List<Wallet>) this);
+        user.getWallets().add(this);
     }
 }

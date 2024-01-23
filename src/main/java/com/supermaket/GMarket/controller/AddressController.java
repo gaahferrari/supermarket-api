@@ -62,7 +62,7 @@ public class AddressController {
             @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = BaseBodyError.class)))})
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<BaseBodyResponse<AddressDTO>> updateAddress(@RequestBody AddressRequest request, @PathVariable Long id) {
         return ResponseEntity.status(200).body(addressService.update( id, request));
     }

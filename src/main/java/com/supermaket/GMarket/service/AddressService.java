@@ -68,14 +68,26 @@ public class AddressService {
         if (addressOptional.isEmpty()) {
             throw new BadRequestException("Endereço com o ID " + addressId + " não encontrado");
         }
+       Address existingAddress = addressOptional.get();
+        if (request.getStreetName() != null) {
+            existingAddress.setStreetName(request.getStreetName());
+        }
+        if (request.getNumber() != null) {
+            existingAddress.setNumber(request.getNumber());
+        }
+        if (request.getCity() != null) {
+            existingAddress.setCity(request.getCity());
+        }
+        if (request.getZipCode() != null) {
+            existingAddress.setZipCode(request.getZipCode());
+        }
+        if (request.getState() != null) {
+            existingAddress.setState(request.getState());
+        }
+        if (request.getCountry() != null) {
+            existingAddress.setCountry(request.getCountry());
+        }
 
-        Address existingAddress = addressOptional.get();
-        existingAddress.setStreetName(request.getStreetName());
-        existingAddress.setNumber(request.getNumber());
-        existingAddress.setCity(request.getCity());
-        existingAddress.setZipCode(request.getZipCode());
-        existingAddress.setState(request.getState());
-        existingAddress.setCountry(request.getCountry());
 
         Address updatedAddress = addressRepository.save(existingAddress);
         return AddressMapper.toResponseDTO(updatedAddress);

@@ -29,7 +29,7 @@ public class CategoryMapper {
         return CategoryProductDTO.builder()
                 .name(category.getName())
                 .id(category.getId())
-                .productsIds(category.getProducts().stream().map(ProductMapper::toDTO).collect(Collectors.toList()))
+                .productsIds(category.getProducts().stream().map(ProductMapper::toDTO).collect(Collectors.toSet()))
                 .build();
     }
 

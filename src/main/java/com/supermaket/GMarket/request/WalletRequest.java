@@ -41,7 +41,7 @@ public class WalletRequest {
     @NotBlank(message = "O CVV do cartão não pode estar em branco")
     @NotNull(message = "O CVV do cartão não pode ser nulo")
     @Schema(description = "CVV do cartão", example = "030")
-    private String CVV;
+    private String securityCode;
 
     @Valid
     @Schema(description = "Selecionar cartão de crédito", example = "true")

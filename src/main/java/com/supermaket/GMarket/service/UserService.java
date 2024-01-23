@@ -3,13 +3,10 @@ package com.supermaket.GMarket.service;
 import com.supermaket.GMarket.DTO.UserDTO;
 import com.supermaket.GMarket.DTO.UserOrderDTO;
 import com.supermaket.GMarket.DTO.UserProductsDTO;
-import com.supermaket.GMarket.entity.Order;
-import com.supermaket.GMarket.entity.Product;
-import com.supermaket.GMarket.entity.User;
+import com.supermaket.GMarket.entity.*;
 import com.supermaket.GMarket.exceptions.NotFoundException;
 import com.supermaket.GMarket.mapper.UserMapper;
-import com.supermaket.GMarket.repository.ProductRepository;
-import com.supermaket.GMarket.repository.UserRepository;
+import com.supermaket.GMarket.repository.*;
 import com.supermaket.GMarket.request.UserRequest;
 import com.supermaket.GMarket.responses.BaseBodyResponse;
 import jakarta.validation.Valid;
@@ -18,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.supermaket.GMarket.exceptions.BadRequestException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +25,12 @@ public class UserService {
     private final UserRepository userRepository;
 
     private final ProductRepository productRepository;
+
+    private final OrderRepository orderRepository;
+
+    private final WalletRepository walletRepository;
+
+    private final AddressRepository addressRepository;
 
 
     public BaseBodyResponse<List<UserDTO>> getAll() {
@@ -58,14 +62,6 @@ public class UserService {
         }
     }
 
-    public void deleteUserAndWallet(Long userId) {
-        User user = userRepository.findById(userId).orElse(null);
-        if (user != null) {
-            userRepository.delete(user);
-        } else {
-            throw new BadRequestException("Erro ao deletar o usuário");
-        }
-    }
 
     public BaseBodyResponse<User> getById(Long userId) {
         User user = userRepository.findById(userId).orElse(null);
@@ -105,5 +101,41 @@ public class UserService {
             userRepository.save(user);
         }
     }
+
+    public BaseBodyResponse<UserProductsDTO> getByProducts(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if(userOptional.isEmpty()){
+            throw new NotFoundException("Usuário com o id: " + userId + " não foi encontrado");
+        } else {
+            User user = userOptional.get();
+            return UserMapper.toResponseProductID(user);
+        }
+    }
+
+    public void deleteUser(Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user != null) {
+            for (Wallet wallet : user.getWallets()) {
+                walletRepository.delete(wallet);
+            }
+            Address address = user.getAddress();
+            if (address != null) {
+                addressRepository.delete(address);
+            }
+            for (Order order : new ArrayList<>(user.getOrders())) {
+                order.getProducts().clear();
+                orderRepository.delete(order);
+            }
+
+            user.getFavoriteProducts().clear();
+
+            userRepository.delete(user);
+        } else {
+            throw new BadRequestException("Erro ao deletar o usuário");
+        }
+    }
+
+
+
 }
 

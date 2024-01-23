@@ -33,12 +33,6 @@ public class ProductRequest {
     @Schema(description = "Descrição do produto", example = "Frutas caramelizadas com açúcar refinado")
     private String description;
 
-
-    @NotBlank(message = "A categoria do produto não pode estar em branco")
-    @NotNull(message = "A categoria do produto não pode ser nulo")
-    @Schema(description = "Lista de categorias do produto", example = "Fruta")
-    @Valid
-    private Set<Category> categoriesId;
     @Size(min = 3, max = 30, message = "A imagem do produto deve ter entre 3 e 30 caracteres")
     @NotBlank(message = "A imagem do produto não pode estar em branco")
     @NotNull(message = "A imagem do produto não pode ser nulo")
@@ -46,6 +40,6 @@ public class ProductRequest {
     private String image;
 
     @Valid
-    private Boolean inStock = true;
+    private Boolean inStock;
 
 }

@@ -62,7 +62,7 @@ public class OrderMapper {
 
     public static BaseBodyResponse<OrderProductDTO> toResponseProduct(Order order){
         return BaseBodyResponse.<OrderProductDTO>builder()
-                .company("Pizza Store")
+                .company("G-Market")
                 .description("Um novo produto foi adicionado ao pedido")
                 .result(toProductsDTO(order)).build();
     }

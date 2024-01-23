@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @SuperBuilder
@@ -15,5 +16,5 @@ import java.util.List;
 @EqualsAndHashCode(callSuper=false)
 public class CategoryProductDTO extends CategoryDTO{
 
-    private List<ProductDTO> productsIds;
+    private Set<ProductDTO> productsIds;
 }

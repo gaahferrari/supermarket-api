@@ -53,7 +53,7 @@ public class OrderController {
         return ResponseEntity.status(200).body("O pedido com o ID: " + id + " foi excluído com sucesso!");
     }
 
-    @Operation(summary = "Update Orders", description = "Update Orders", tags = {"Orders"}, responses = {
+    @Operation(summary = "Update Orders", description = "Add products to order", tags = {"Orders"}, responses = {
             @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = BaseBodyError.class)))})
