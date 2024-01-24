@@ -32,9 +32,6 @@ public class Wallet {
 
     private String securityCode;
 
-    private Boolean creditCard;
-
-    private Boolean debitCard;
 
     public void addUser(User user){
         if(user.getUserName().isBlank()){

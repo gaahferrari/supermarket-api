@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddressRequest {
     @Valid
+    @Schema(description = "ID do usuário", example = "5")
     private Long userId;
 
     @Size(min = 3, max = 50, message = "O nome da rua deve ter entre 3 e 50 caracteres")

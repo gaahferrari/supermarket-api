@@ -3,6 +3,7 @@ package com.supermaket.GMarket.service;
 import com.supermaket.GMarket.DTO.UserDTO;
 import com.supermaket.GMarket.DTO.UserOrderDTO;
 import com.supermaket.GMarket.DTO.UserProductsDTO;
+import com.supermaket.GMarket.DTO.UserWalletDTO;
 import com.supermaket.GMarket.entity.*;
 import com.supermaket.GMarket.exceptions.NotFoundException;
 import com.supermaket.GMarket.mapper.UserMapper;
@@ -109,6 +110,17 @@ public class UserService {
         } else {
             User user = userOptional.get();
             return UserMapper.toResponseProductID(user);
+        }
+    }
+
+    public BaseBodyResponse<UserWalletDTO> getByWallets(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if(userOptional.isEmpty()){
+            throw new NotFoundException("Usuário com o id: " + userId + " não foi encontrado");
+        } else {
+            User user = userOptional.get();
+            List<Wallet> wallets = user.getWallets();
+            return UserMapper.toResponseWalletID(user, wallets);
         }
     }
 

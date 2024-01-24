@@ -95,7 +95,7 @@ public class UserMapper {
     public static BaseBodyResponse<UserOrderDTO> toResponseOrderID(User user, List<Order> orders){
         return BaseBodyResponse.<UserOrderDTO>builder()
                 .company("G-Market")
-                .description("Pedidos do usuário: " + user.getUserName())
+                .description("Pedidos do usuário: " + user.getUserName().toString())
                 .result(toOrdersDTO(user, orders)).build();
     }
 
@@ -109,7 +109,7 @@ public class UserMapper {
     public static BaseBodyResponse<UserWalletDTO> toResponseWalletID(User user, List<Wallet> wallets){
         return BaseBodyResponse.<UserWalletDTO>builder()
                 .company("G-Market")
-                .description("Métodos de pagamentos do usuário: " + user.getWallets())
+                .description("Métodos de pagamentos do usuário: " + user.getUserName().toString())
                 .result(toWalletDTO(user, wallets)).build();
     }
 

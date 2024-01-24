@@ -27,7 +27,7 @@ public class AddressService {
     public BaseBodyResponse<List<AddressDTO>> getAll() {
         List<Address> addresses = addressRepository.findAll();
         if (addresses.isEmpty()) {
-            throw new BadRequestException("A lista de carteiras está vazia");
+            throw new BadRequestException("A lista de endereços está vazia");
         }
         return AddressMapper.toListResponse(addresses);
     }
@@ -93,15 +93,7 @@ public class AddressService {
         return AddressMapper.toResponseDTO(updatedAddress);
     }
 
-//    @Transactional
-//    public BaseBodyResponse<AddressDTO> getById(Long addressId) {
-//        Optional<Address> addressOptional = addressRepository.findById(addressId);
-//        if (addressOptional.isEmpty()) {
-//            throw new BadRequestException("Endereço com o ID " + addressId + " não encontrado");
-//        }
-//        Address address = addressOptional.get();
-//        return AddressMapper.toResponse(address);
-//    }
+
 
 }
 

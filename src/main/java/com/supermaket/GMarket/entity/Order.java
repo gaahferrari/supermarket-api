@@ -54,6 +54,15 @@ public class Order {
         }
     }
 
+    public void removeProduct(Product product) {
+        if (this.products.isEmpty()) {
+            throw new IllegalStateException("A lista de produtos está vazia");
+        }
+        if (this.products.contains(product)) {
+            this.products.remove(product);
+            product.getOrders().remove(this);
+        }
+    }
     public void removeOrder() {
 
         if (this.user.getUserName().isBlank() || this.products.isEmpty()) {

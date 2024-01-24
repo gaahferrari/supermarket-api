@@ -25,5 +25,6 @@ public class CategoryRequest {
     private String name;
 
     @Valid
+    @Schema(description = "Lista de IDs de produtos", example = "[1,2,3]")
     private List<Long> productsId;
 }

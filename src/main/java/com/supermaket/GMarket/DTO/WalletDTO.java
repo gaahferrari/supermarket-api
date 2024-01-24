@@ -25,7 +25,4 @@ public class WalletDTO {
 
     private String securityCode;
 
-    private Boolean creditCard;
-
-    private Boolean debitCard;
 }

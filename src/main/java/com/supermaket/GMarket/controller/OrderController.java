@@ -2,6 +2,7 @@ package com.supermaket.GMarket.controller;
 
 import com.supermaket.GMarket.DTO.OrderDTO;
 import com.supermaket.GMarket.DTO.OrderProductDTO;
+import com.supermaket.GMarket.DTO.WalletDTO;
 import com.supermaket.GMarket.request.OrderRequest;
 import com.supermaket.GMarket.responses.BaseBodyError;
 import com.supermaket.GMarket.responses.BaseBodyResponse;
@@ -60,5 +61,24 @@ public class OrderController {
     @PutMapping("/{orderId}/product/{productId}")
     public ResponseEntity<BaseBodyResponse<OrderProductDTO>> addProductToOrder(@PathVariable Long orderId, @PathVariable Long productId) {
         return ResponseEntity.status(200).body(orderService.addProductToOrder(orderId,productId));
+    }
+
+    @Operation(summary = "Delete product from order", description = "Delete product from order", tags = {"Orders"}, responses = {
+            @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = BaseBodyError.class)))})
+    @DeleteMapping("/{orderId}/product/{productId}")
+    public ResponseEntity<String> removeProduct(@PathVariable Long orderId, @PathVariable Long productId) {
+        orderService.removeProduct(orderId, productId);
+        return ResponseEntity.status(201).body("O produto com o ID: " + productId + " foi removido da categoria " + orderId + " com sucesso!");
+    }
+
+    @Operation(summary = "Get order by ID", description = "Get order by ID", tags = {"Orders"}, responses = {
+            @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = BaseBodyError.class)))})
+    @GetMapping("/{id}")
+    public BaseBodyResponse<OrderDTO> getProductById(@PathVariable Long id) {
+        return orderService.getById(id);
     }
 }

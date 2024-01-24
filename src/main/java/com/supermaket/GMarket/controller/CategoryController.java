@@ -73,4 +73,14 @@ public class CategoryController {
     public ResponseEntity<BaseBodyResponse<CategoryProductDTO>> addProductToCategory(@PathVariable Long categoryId, @PathVariable Long productId) {
         return ResponseEntity.status(201).body(categoryService.addProductsToCategory(categoryId, productId));
     }
+
+    @Operation(summary = "Delete product from category", description = "Delete product from category", tags = {"category"}, responses = {
+            @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = BaseBodyError.class)))})
+    @DeleteMapping("/{categoryId}/product/{productId}")
+    public ResponseEntity<String> removeProduct(@PathVariable Long categoryId, @PathVariable Long productId) {
+        categoryService.removeProduct(categoryId, productId);
+        return ResponseEntity.status(201).body("O produto com o ID: " + productId + " foi removido da categoria " + categoryId + " com sucesso!");
+    }
 }

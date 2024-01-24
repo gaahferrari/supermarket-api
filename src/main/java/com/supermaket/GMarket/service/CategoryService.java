@@ -5,6 +5,7 @@ import com.supermaket.GMarket.DTO.CategoryProductDTO;
 import com.supermaket.GMarket.entity.Address;
 import com.supermaket.GMarket.entity.Category;
 import com.supermaket.GMarket.entity.Product;
+import com.supermaket.GMarket.entity.User;
 import com.supermaket.GMarket.exceptions.BadRequestException;
 import com.supermaket.GMarket.exceptions.NotFoundException;
 import com.supermaket.GMarket.mapper.AddressMapper;
@@ -85,4 +86,17 @@ public class CategoryService {
         Category categories = categoryRepository.save(category);
         return CategoryMapper.toResponseProducts(categories);
     }
-}
+
+    public void removeProduct(Long userId, Long productId) {
+       Category category = categoryRepository.findById(userId).orElse(null);
+        Product product = productRepository.findById(productId).orElse(null);
+        if (category.getProducts().isEmpty()) {
+            throw new IllegalStateException("A lista de produtos favoritos está vazia");
+        }
+
+            category.removeProduct(product);
+            categoryRepository.save(category);
+        }
+    }
+
+

@@ -43,11 +43,5 @@ public class WalletRequest {
     @Schema(description = "CVV do cartão", example = "030")
     private String securityCode;
 
-    @Valid
-    @Schema(description = "Selecionar cartão de crédito", example = "true")
-    private Boolean creditCard = false;
-    @Valid
 
-    @Schema(description = "Selecionar cartão de débito", example = "true")
-    private Boolean debitCard = false;
 }

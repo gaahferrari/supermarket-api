@@ -50,11 +50,14 @@ public class UserRequest {
     @Schema(description = "Usuário administrador", example = "true")
     private Boolean isAdmin = false;
     @Valid
+    @Schema(description = "ID da carteira", example = "12345")
     private Long walletId;
 
     @Valid
+    @Schema(description = "ID do endereço", example = "98765")
     private Long addressId;
 
     @Valid
+    @Schema(description = "Lista de IDs de pedidos", example = "[1001, 1002, 1003]")
     private List<Long> ordersList;
 }

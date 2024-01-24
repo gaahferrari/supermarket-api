@@ -2,12 +2,12 @@ package com.supermaket.GMarket.service;
 
 import com.supermaket.GMarket.DTO.OrderDTO;
 import com.supermaket.GMarket.DTO.OrderProductDTO;
-import com.supermaket.GMarket.entity.Order;
-import com.supermaket.GMarket.entity.Product;
-import com.supermaket.GMarket.entity.User;
+import com.supermaket.GMarket.DTO.WalletDTO;
+import com.supermaket.GMarket.entity.*;
 import com.supermaket.GMarket.exceptions.BadRequestException;
 import com.supermaket.GMarket.exceptions.NotFoundException;
 import com.supermaket.GMarket.mapper.OrderMapper;
+import com.supermaket.GMarket.mapper.WalletMapper;
 import com.supermaket.GMarket.repository.OrderRepository;
 import com.supermaket.GMarket.repository.ProductRepository;
 import com.supermaket.GMarket.repository.UserRepository;
@@ -82,6 +82,27 @@ public class OrderService {
         return OrderMapper.toResponseProduct(savedOrder);
     }
 
+    public void removeProduct(Long orderId, Long productId) {
+        Order order = orderRepository.findById(orderId).orElse(null);
+        Product product = productRepository.findById(productId).orElse(null);
+        if (order.getProducts().isEmpty()) {
+            throw new IllegalStateException("A lista de produtos favoritos está vazia");
+        }
 
+        order.removeProduct(product);
+        orderRepository.save(order);
+    }
 
+    public BaseBodyResponse<OrderDTO> getById(Long orderID) {
+        Order order = orderRepository.findById(orderID).orElse(null);
+        if (order != null) {
+            return OrderMapper.toResponse(order);
+        } else {
+            throw new NotFoundException("Carteira não encontrada com o ID: " + orderID);
+        }
+    }
 }
+
+
+
+

@@ -3,6 +3,7 @@ package com.supermaket.GMarket.controller;
 import com.supermaket.GMarket.DTO.UserDTO;
 import com.supermaket.GMarket.DTO.UserOrderDTO;
 import com.supermaket.GMarket.DTO.UserProductsDTO;
+import com.supermaket.GMarket.DTO.UserWalletDTO;
 import com.supermaket.GMarket.entity.User;
 import com.supermaket.GMarket.request.UserRequest;
 import com.supermaket.GMarket.responses.BaseBodyError;
@@ -96,6 +97,15 @@ public class UserController {
     @GetMapping("favorites/{id}")
     public ResponseEntity<BaseBodyResponse<UserProductsDTO>> getProductsListById(@PathVariable Long id) {
         return ResponseEntity.status(200).body(userService.getByProducts(id));
+    }
+
+    @Operation(summary = "Get User's payments By ID", description = "Get User's payment By ID", tags = {"Users"}, responses = {
+            @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = BaseBodyError.class)))})
+    @GetMapping("payment/{id}")
+    public ResponseEntity<BaseBodyResponse<UserWalletDTO>> getWalletsById(@PathVariable Long id) {
+        return ResponseEntity.status(200).body(userService.getByWallets(id));
     }
 
 }

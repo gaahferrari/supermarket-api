@@ -19,8 +19,6 @@ public class WalletMapper {
                 .cardExp(request.getCardExp())
                 .cardOwnerName(request.getCardOwnerName())
                 .securityCode(request.getSecurityCode())
-                .debitCard(request.getDebitCard())
-                .creditCard(request.getDebitCard())
                 .build();
     }
 
@@ -30,8 +28,6 @@ public class WalletMapper {
                 .cardExp(wallet.getCardExp())
                 .cardOwnerName(wallet.getCardOwnerName())
                 .securityCode(wallet.getSecurityCode())
-                .debitCard(wallet.getDebitCard())
-                .creditCard(wallet.getDebitCard())
                 .id(wallet.getId())
                 .userId(wallet.getId())
                 .build();

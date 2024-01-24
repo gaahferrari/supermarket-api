@@ -35,8 +35,10 @@ public class Category {
         if (this.products.isEmpty()) {
             throw new IllegalStateException("A lista de produtos está vazia");
         }
-        if (products.remove(product)) {
+        if (this.products.contains(product)) {
+            this.products.remove(product);
             product.getCategories().remove(this);
         }
     }
+
 }

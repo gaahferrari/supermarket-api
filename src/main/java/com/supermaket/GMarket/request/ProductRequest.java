@@ -40,6 +40,7 @@ public class ProductRequest {
     private String image;
 
     @Valid
+    @Schema(description = "Indica se o produto está em estoque", example = "true")
     private Boolean inStock;
 
 }
