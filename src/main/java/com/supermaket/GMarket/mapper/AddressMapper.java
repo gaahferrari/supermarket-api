@@ -1,11 +1,7 @@
 package com.supermaket.GMarket.mapper;
 
 import com.supermaket.GMarket.DTO.AddressDTO;
-import com.supermaket.GMarket.DTO.UserDTO;
-import com.supermaket.GMarket.DTO.UserOrderDTO;
 import com.supermaket.GMarket.entity.Address;
-import com.supermaket.GMarket.entity.Order;
-import com.supermaket.GMarket.entity.User;
 import com.supermaket.GMarket.request.AddressRequest;
 import com.supermaket.GMarket.responses.BaseBodyResponse;
 

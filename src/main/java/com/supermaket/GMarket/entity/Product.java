@@ -37,6 +37,7 @@ public class Product {
 
     private Set<Category> categories = new HashSet<>();
 
+
     private String image;
 
     @CreationTimestamp

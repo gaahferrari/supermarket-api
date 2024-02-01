@@ -1,10 +1,5 @@
 package com.supermaket.GMarket.DTO;
 
-import com.supermaket.GMarket.entity.Address;
-import com.supermaket.GMarket.entity.Order;
-import com.supermaket.GMarket.entity.Product;
-import com.supermaket.GMarket.entity.Wallet;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

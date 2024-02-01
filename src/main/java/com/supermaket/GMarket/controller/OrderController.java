@@ -2,7 +2,6 @@ package com.supermaket.GMarket.controller;
 
 import com.supermaket.GMarket.DTO.OrderDTO;
 import com.supermaket.GMarket.DTO.OrderProductDTO;
-import com.supermaket.GMarket.DTO.WalletDTO;
 import com.supermaket.GMarket.request.OrderRequest;
 import com.supermaket.GMarket.responses.BaseBodyError;
 import com.supermaket.GMarket.responses.BaseBodyResponse;

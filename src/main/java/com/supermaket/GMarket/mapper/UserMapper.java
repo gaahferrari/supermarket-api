@@ -2,7 +2,6 @@ package com.supermaket.GMarket.mapper;
 
 import com.supermaket.GMarket.DTO.*;
 import com.supermaket.GMarket.entity.Order;
-import com.supermaket.GMarket.entity.Product;
 import com.supermaket.GMarket.entity.User;
 import com.supermaket.GMarket.entity.Wallet;
 import com.supermaket.GMarket.request.UserRequest;

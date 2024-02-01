@@ -1,17 +1,12 @@
 package com.supermaket.GMarket.mapper;
 
-import com.supermaket.GMarket.DTO.OrderDTO;
+
 import com.supermaket.GMarket.DTO.ProductDTO;
-import com.supermaket.GMarket.DTO.WalletDTO;
-import com.supermaket.GMarket.entity.Order;
 import com.supermaket.GMarket.entity.Product;
-import com.supermaket.GMarket.entity.Wallet;
-import com.supermaket.GMarket.request.OrderRequest;
 import com.supermaket.GMarket.request.ProductRequest;
 import com.supermaket.GMarket.responses.BaseBodyResponse;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductMapper {
     public static Product toProduct(ProductRequest request){
@@ -49,7 +44,7 @@ public class ProductMapper {
         List<ProductDTO> productDTOS = products.stream().map(ProductMapper::toDTO).toList();
         return BaseBodyResponse.<List<ProductDTO>>builder()
                 .company("G-Market")
-                .description("Lista de métodos de pagamentos cadastrados")
+                .description("Lista de produtos cadastrados")
                 .result(productDTOS)
                 .build();
     }

@@ -1,6 +1,5 @@
 package com.supermaket.GMarket.request;
 
-import com.supermaket.GMarket.entity.Category;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
@@ -8,7 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import java.util.Set;
 
 @Data
 @Builder
@@ -33,8 +31,8 @@ public class ProductRequest {
     @Schema(description = "Descrição do produto", example = "Frutas caramelizadas com açúcar refinado")
     private String description;
 
-    @Size(min = 3, max = 30, message = "A imagem do produto deve ter entre 3 e 30 caracteres")
-    @NotBlank(message = "A imagem do produto não pode estar em branco")
+
+   // @NotBlank(message = "A imagem do produto não pode estar em branco")
     @NotNull(message = "A imagem do produto não pode ser nulo")
     @Schema(description = "Imagem do produto", example = "imagem.jpg")
     private String image;

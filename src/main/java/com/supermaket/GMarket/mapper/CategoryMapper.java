@@ -2,7 +2,6 @@ package com.supermaket.GMarket.mapper;
 
 import com.supermaket.GMarket.DTO.*;
 import com.supermaket.GMarket.entity.*;
-import com.supermaket.GMarket.request.AddressRequest;
 import com.supermaket.GMarket.request.CategoryRequest;
 import com.supermaket.GMarket.responses.BaseBodyResponse;
 

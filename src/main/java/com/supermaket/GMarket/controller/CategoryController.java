@@ -1,10 +1,7 @@
 package com.supermaket.GMarket.controller;
 
-import com.supermaket.GMarket.DTO.AddressDTO;
 import com.supermaket.GMarket.DTO.CategoryProductDTO;
 import com.supermaket.GMarket.entity.Category;
-import com.supermaket.GMarket.repository.CategoryRepository;
-import com.supermaket.GMarket.request.AddressRequest;
 import com.supermaket.GMarket.request.CategoryRequest;
 import com.supermaket.GMarket.responses.BaseBodyError;
 import com.supermaket.GMarket.responses.BaseBodyResponse;

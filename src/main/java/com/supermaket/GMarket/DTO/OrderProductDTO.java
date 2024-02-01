@@ -1,6 +1,5 @@
 package com.supermaket.GMarket.DTO;
 
-import com.supermaket.GMarket.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
