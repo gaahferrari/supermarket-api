@@ -38,6 +38,11 @@ public class UserController {
         return ResponseEntity.status(200).body(userService.getAll());
     }
 
+    @GetMapping("/{userName}/{password}")
+    public UserDTO getUserLogin(@PathVariable String userName, @PathVariable String password){
+        return userService.getByUserNameAndPassword(userName, password);
+    }
+
     @Operation(summary = "Get orders by user ID", description = "Get orders by user ID", tags = {"Users"}, responses = {
             @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
@@ -73,6 +78,8 @@ public class UserController {
     public ResponseEntity<BaseBodyResponse<User>> createCustomer(@RequestBody @Valid UserRequest request) {
         return ResponseEntity.status(201).body(userService.create(request));
     }
+
+
     @Operation(summary = "Update favorite product list", description = "Update favorite product list", tags = {"Users"}, responses = {
             @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
@@ -107,5 +114,7 @@ public class UserController {
     public ResponseEntity<BaseBodyResponse<UserWalletDTO>> getWalletsById(@PathVariable Long id) {
         return ResponseEntity.status(200).body(userService.getByWallets(id));
     }
+
+
 
 }

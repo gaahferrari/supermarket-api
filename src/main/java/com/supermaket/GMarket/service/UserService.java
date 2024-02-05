@@ -148,6 +148,8 @@ public class UserService {
     }
 
 
-
+    public UserDTO getByUserNameAndPassword (String userName, String password){
+        return UserMapper.toDTO(userRepository.findUserByUserNameAndPassword(userName, password));
+    }
 }
 

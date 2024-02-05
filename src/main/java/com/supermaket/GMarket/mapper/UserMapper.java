@@ -30,6 +30,7 @@ public class UserMapper {
                 .lastName(user.getLastName())
                 .birthDate(user.getBirthDate())
                 .addressId(user.getAddress().getId())
+                .isAdmin(user.getIsAdmin())
                 .id(user.getId())
                 .build();
     }
