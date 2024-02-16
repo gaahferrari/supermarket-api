@@ -1,6 +1,7 @@
 package com.supermaket.GMarket.controller;
 
 import com.supermaket.GMarket.DTO.CategoryProductDTO;
+import com.supermaket.GMarket.DTO.UserDTO;
 import com.supermaket.GMarket.entity.Category;
 import com.supermaket.GMarket.request.CategoryRequest;
 import com.supermaket.GMarket.responses.BaseBodyError;
@@ -79,5 +80,14 @@ public class CategoryController {
     public ResponseEntity<String> removeProduct(@PathVariable Long categoryId, @PathVariable Long productId) {
         categoryService.removeProduct(categoryId, productId);
         return ResponseEntity.status(201).body("O produto com o ID: " + productId + " foi removido da categoria " + categoryId + " com sucesso!");
+    }
+
+    @Operation(summary = "Get Product by Category", description = "Get Product by Category", tags = {"Users"}, responses = {
+            @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = BaseBodyError.class)))})
+    @GetMapping("/name/{name}")
+    public CategoryProductDTO getProductByCategory(@PathVariable String name){
+        return categoryService.getByCategory(name);
     }
 }

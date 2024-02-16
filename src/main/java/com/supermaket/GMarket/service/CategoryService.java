@@ -2,6 +2,7 @@ package com.supermaket.GMarket.service;
 
 import com.supermaket.GMarket.DTO.CategoryDTO;
 import com.supermaket.GMarket.DTO.CategoryProductDTO;
+import com.supermaket.GMarket.DTO.UserDTO;
 import com.supermaket.GMarket.entity.Address;
 import com.supermaket.GMarket.entity.Category;
 import com.supermaket.GMarket.entity.Product;
@@ -10,6 +11,7 @@ import com.supermaket.GMarket.exceptions.BadRequestException;
 import com.supermaket.GMarket.exceptions.NotFoundException;
 import com.supermaket.GMarket.mapper.AddressMapper;
 import com.supermaket.GMarket.mapper.CategoryMapper;
+import com.supermaket.GMarket.mapper.UserMapper;
 import com.supermaket.GMarket.repository.CategoryRepository;
 import com.supermaket.GMarket.repository.ProductRepository;
 import com.supermaket.GMarket.request.CategoryRequest;
@@ -97,6 +99,11 @@ public class CategoryService {
             category.removeProduct(product);
             categoryRepository.save(category);
         }
+
+public CategoryProductDTO getByCategory(String name){
+        return CategoryMapper.toProductsDTO(categoryRepository.findCategoryByName(name));
+}
+
     }
 
 

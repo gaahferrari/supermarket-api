@@ -22,7 +22,5 @@ public class UserDTO {
 
     private String birthDate;
 
-    private Long addressId;
-
     private Boolean isAdmin;
 }

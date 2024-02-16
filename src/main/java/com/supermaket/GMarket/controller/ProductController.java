@@ -1,5 +1,6 @@
 package com.supermaket.GMarket.controller;
 
+import com.supermaket.GMarket.DTO.CategoryProductDTO;
 import com.supermaket.GMarket.DTO.ProductDTO;
 import com.supermaket.GMarket.request.ProductRequest;
 import com.supermaket.GMarket.responses.BaseBodyError;
@@ -68,4 +69,6 @@ public class ProductController {
     public ResponseEntity<BaseBodyResponse<ProductDTO>> updateProduct(@RequestBody ProductRequest request, @PathVariable Long id) {
         return ResponseEntity.status(200).body(productService.update( id, request));
     }
+
+
 }

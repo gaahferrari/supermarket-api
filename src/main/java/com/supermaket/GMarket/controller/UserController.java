@@ -38,6 +38,10 @@ public class UserController {
         return ResponseEntity.status(200).body(userService.getAll());
     }
 
+    @Operation(summary = "Get User by userName and Password", description = "Get User by userName and Password", tags = {"Users"}, responses = {
+            @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = BaseBodyError.class)))})
     @GetMapping("/{userName}/{password}")
     public UserDTO getUserLogin(@PathVariable String userName, @PathVariable String password){
         return userService.getByUserNameAndPassword(userName, password);
@@ -116,5 +120,7 @@ public class UserController {
     }
 
 
+    }
 
-}
+
+
