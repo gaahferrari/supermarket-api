@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserRequest {
-    @Size(min = 3, max = 30, message = "O primeiro nome deve ter entre 3 e 30 caracteres")
+    @Size(min = 1, max = 30, message = "O primeiro nome deve ter entre 1 e 30 caracteres")
     @NotBlank(message = "O primeiro nome não pode estar em branco")
     @NotNull(message = "O primeiro nome não pode ser nulo")
     @Schema(description = "Primeiro nome", example = "Francisco")
@@ -35,7 +35,7 @@ public class UserRequest {
     @Schema(description = "Nome do usuário", example = "Franciscosantos123")
     private String userName;
 
-    @Size(min = 3, max = 30, message = "O usuário deve ter entre 3 e 30 caracteres")
+    @Size(min = 10, max = 10, message = "A data de nascimento do usuário deve ter entre 10 caracteres")
     @NotNull(message = "A data de nascimento não pode ser nulo")
     @Schema(description = "Data de nascimento", example = "06/02/2002")
     private String birthDate;

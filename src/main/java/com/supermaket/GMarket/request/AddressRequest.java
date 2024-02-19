@@ -25,7 +25,7 @@ public class AddressRequest {
     @Schema(description = "Nome da rua", example = "Avenida Paulista")
     private String streetName;
 
-    @Size(min = 3, max = 20, message = "O número da rua deve ter entre 3 e 20 caracteres")
+    @Size(min = 1, max = 10, message = "O número da rua deve ter entre 3 e 20 caracteres")
     @NotBlank(message = "O número da rua não pode estar em branco")
     @NotNull(message = "O número da rua não pode ser nulo")
     @Schema(description = "Número da rua", example = "2552")
@@ -37,19 +37,19 @@ public class AddressRequest {
     @Schema(description = "CEP da residência", example = "09791-101")
     private String zipCode;
 
-    @Size(min = 1, max = 50, message = "A cidade deve ter entre 4 e 50 caracteres")
+    @Size(min = 1, max = 50, message = "A cidade deve ter entre 1 e 50 caracteres")
     @NotBlank(message = "A cidade  não pode estar em branco")
     @NotNull(message = "A cidade  não pode ser nulo")
     @Schema(description = "Cidade do endereço", example = "São Bernardo do Campo")
     private String city;
 
-    @Size(min = 1, max = 50, message = "O estado deve ter entre 4 e 50 caracteres")
+    @Size(min = 1, max = 50, message = "O estado deve ter entre 1 e 50 caracteres")
     @NotBlank(message = "O estado  não pode estar em branco")
     @NotNull(message = "O estado  não pode ser nulo")
     @Schema(description = "Estado do endereço", example = "São Paulo")
     private String state;
 
-    @Size(min = 4, max = 50, message = "O país deve ter entre 4 e 50 caracteres")
+    @Size(min = 1, max = 50, message = "O país deve ter entre 4 e 50 caracteres")
     @NotBlank(message = "O país  não pode estar em branco")
     @NotNull(message = "O país  não pode ser nulo")
     @Schema(description = "País do endereço", example = "Brasil")

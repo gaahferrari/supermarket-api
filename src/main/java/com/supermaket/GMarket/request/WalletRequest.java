@@ -19,13 +19,13 @@ public class WalletRequest {
     @Valid
     private Long userId;
 
-    @Size(min = 3, max = 15, message = "O número do cartão deve ter entre 3 e 50 caracteres")
+    @Size(min = 16, max = 16, message = "O número do cartão deve ter 16 caracteres")
     @NotBlank(message = "O número do cartão não pode estar em branco")
     @NotNull(message = "O número do cartão não pode ser nulo")
     @Schema(description = "Número do cartão", example = "23423234412")
     private String cardNumber;
 
-    @Size(min = 5, max = 5, message = "A data de expiração do cartão deve ter 3 caracteres")
+    @Size(min = 5, max = 5, message = "A data de expiração do cartão deve ter 5 caracteres")
     @NotBlank(message = "A data de expiração do cartão não pode estar em branco")
     @NotNull(message = "A data de expiração do cartão não pode ser nulo")
     @Schema(description = "Data de expiração do cartão", example = "01/24")
