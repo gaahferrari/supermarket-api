@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class OrderMapper {
     public static Order toOrder(OrderRequest request){
         return Order.builder()
-                .totalPrice(request.getTotalPrice())
+                .totalPrice(0.0)
                 .build();
     }
 

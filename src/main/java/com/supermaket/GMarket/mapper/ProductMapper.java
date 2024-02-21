@@ -16,6 +16,7 @@ public class ProductMapper {
                 .description(request.getDescription())
                 .image(request.getImage())
                 .inStock(true)
+                .quantity(1L)
                 .build();
     }
 
@@ -29,6 +30,7 @@ public class ProductMapper {
                 .updatedAt(product.getUpdatedAt())
                 .id(product.getId())
                 .inStock(product.getInStock())
+                .quantity(product.getQuantity())
                 .build();
     }
 

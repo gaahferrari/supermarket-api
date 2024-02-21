@@ -24,9 +24,7 @@ public class OrderRequest {
     @Valid
     @Schema(description = "Conjunto de produtos", example = "[{productId: 1, productName: 'Product 1'}, {productId: 2, productName: 'Product 2'}]")
     private Set<Product> productsId;
-
-    @DecimalMin(value = "0.0", message = "O valor do pedido deve ser maior que zero")
-    @NotNull(message = "O preço total do pedido não pode ser nulo")
+    @Valid
     @Schema(description = "O valor total do pedido", example = "25.00")
     private Double totalPrice;
 }

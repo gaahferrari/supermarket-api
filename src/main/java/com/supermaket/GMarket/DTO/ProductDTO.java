@@ -28,4 +28,6 @@ public class ProductDTO {
 
     private Boolean inStock;
 
+    private Long quantity;
+
 }

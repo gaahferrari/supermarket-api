@@ -48,6 +48,8 @@ public class Product {
 
     private Boolean inStock;
 
+    private Long quantity;
+
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(

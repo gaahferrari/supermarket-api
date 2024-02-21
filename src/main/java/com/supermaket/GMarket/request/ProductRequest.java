@@ -32,7 +32,6 @@ public class ProductRequest {
     private String description;
 
 
-   // @NotBlank(message = "A imagem do produto não pode estar em branco")
     @NotNull(message = "A imagem do produto não pode ser nulo")
     @Schema(description = "Imagem do produto", example = "imagem.jpg")
     private String image;
@@ -40,5 +39,9 @@ public class ProductRequest {
     @Valid
     @Schema(description = "Indica se o produto está em estoque", example = "true")
     private Boolean inStock;
+
+    @Valid
+    @Schema(description = "Indica a quantidade", example = "1")
+    private Long quantity;
 
 }

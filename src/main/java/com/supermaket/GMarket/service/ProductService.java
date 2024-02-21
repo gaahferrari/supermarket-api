@@ -80,6 +80,7 @@ public class ProductService {
         existingProduct.setDescription(request.getDescription());
         existingProduct.setPrice(request.getPrice());
         existingProduct.setInStock(request.getInStock());
+        existingProduct.setQuantity(request.getQuantity());
         existingProduct.setUpdatedAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
 
         Product updatedProduct = productRepository.save(existingProduct);
