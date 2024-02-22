@@ -69,7 +69,7 @@ public class OrderController {
     @DeleteMapping("/{orderId}/product/{productId}")
     public ResponseEntity<String> removeProduct(@PathVariable Long orderId, @PathVariable Long productId) {
         orderService.removeProduct(orderId, productId);
-        return ResponseEntity.status(201).body("O produto com o ID: " + productId + " foi removido da categoria " + orderId + " com sucesso!");
+        return ResponseEntity.status(201).body("O produto com o ID: " + productId + " foi removido do pedido " + orderId + " com sucesso!");
     }
 
     @Operation(summary = "Get order by ID", description = "Get order by ID", tags = {"Orders"}, responses = {

@@ -90,6 +90,8 @@ public class OrderService {
         }
 
         order.removeProduct(product);
+        double totalProductPrice = order.getProducts().stream().mapToDouble(Product::getPrice).sum();
+        order.setTotalPrice(totalProductPrice);
         orderRepository.save(order);
     }
 
