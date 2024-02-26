@@ -3,7 +3,6 @@ package com.supermaket.GMarket.mapper;
 import com.supermaket.GMarket.DTO.*;
 import com.supermaket.GMarket.entity.Order;
 import com.supermaket.GMarket.entity.User;
-import com.supermaket.GMarket.entity.Wallet;
 import com.supermaket.GMarket.request.UserRequest;
 import com.supermaket.GMarket.responses.BaseBodyResponse;
 
@@ -59,18 +58,7 @@ public class UserMapper {
                 .build();
     }
 
-    public static UserWalletDTO toWalletDTO(User user, List<Wallet> wallets){
-        List<WalletDTO> walletDTO = wallets.stream().map(WalletMapper::toDTO).toList();
 
-        return UserWalletDTO.builder()
-                .id(user.getId())
-                .userName(user.getUserName())
-                .name(user.getName())
-                .lastName(user.getLastName())
-                .birthDate(user.getBirthDate())
-                .walletIds(walletDTO)
-                .build();
-    }
 
     public static BaseBodyResponse<User> toResponse(User user){
         return BaseBodyResponse.<User>builder()
@@ -102,11 +90,6 @@ public class UserMapper {
                 .result(toProductsDTO(user)).build();
     }
 
-    public static BaseBodyResponse<UserWalletDTO> toResponseWalletID(User user, List<Wallet> wallets){
-        return BaseBodyResponse.<UserWalletDTO>builder()
-                .company("G-Market")
-                .description("Métodos de pagamentos do usuário: " + user.getUserName().toString())
-                .result(toWalletDTO(user, wallets)).build();
-    }
+
 
 }

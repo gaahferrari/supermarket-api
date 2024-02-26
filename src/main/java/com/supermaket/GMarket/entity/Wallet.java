@@ -17,9 +17,9 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JsonIgnore
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     private String cardNumber;
@@ -36,6 +36,6 @@ public class Wallet {
             throw new IllegalArgumentException("O nome não pode estar em branco");
         }
         setUser(user);
-        user.getWallets().add(this);
+        user.setWallet(this);
     }
 }

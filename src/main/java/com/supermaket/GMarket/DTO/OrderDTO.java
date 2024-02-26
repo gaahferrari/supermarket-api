@@ -23,4 +23,6 @@ public class OrderDTO {
     private Date createdAt;
 
     private Double totalPrice;
+
+    private Long wallet;
 }

@@ -1,6 +1,7 @@
 package com.supermaket.GMarket.service;
 
 import com.supermaket.GMarket.DTO.WalletDTO;
+import com.supermaket.GMarket.entity.Address;
 import com.supermaket.GMarket.entity.User;
 import com.supermaket.GMarket.entity.Wallet;
 import com.supermaket.GMarket.exceptions.BadRequestException;
@@ -54,6 +55,22 @@ public class WalletService {
         } else {
             throw new NotFoundException("Carteira não encontrada com o ID: " + walletId);
         }
+    }
+
+    @Transactional
+    public void delete(Long walletId) {
+        Optional<Wallet> walletOptional = walletRepository.findById(walletId);
+        if (walletOptional.isEmpty()) {
+            throw new BadRequestException("Endereço com o ID " + walletId + " não encontrado");
+        }
+        Wallet wallet = walletOptional.get();
+
+        if (wallet.getUser() != null) {
+            wallet.getUser().setAddress(null);
+            userRepository.save(wallet.getUser());
+        }
+
+        walletRepository.delete(wallet);
     }
 
 }

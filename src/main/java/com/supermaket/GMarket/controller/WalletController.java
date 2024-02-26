@@ -50,4 +50,15 @@ public class WalletController {
     public BaseBodyResponse<WalletDTO> getProductById(@PathVariable Long id) {
         return walletService.getById(id);
     }
+
+
+    @Operation(summary = "Delete wallet", description = "Delete wallet", tags = {"wallet"}, responses = {
+            @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = BaseBodyResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = BaseBodyError.class))),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = BaseBodyError.class)))})
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteWallet(@PathVariable Long id) {
+        walletService.delete(id);
+        return ResponseEntity.status(200).body("O método de pagamento com o ID: " + id + " foi excluído com sucesso!");
+    }
 }

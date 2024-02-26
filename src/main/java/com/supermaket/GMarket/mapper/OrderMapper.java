@@ -22,6 +22,7 @@ public class OrderMapper {
                 .userId(order.getUser().getId())
                 .name(order.getUser().getName())
                 .address(order.getUser().getAddress().getId())
+                .wallet(order.getUser().getWallet().getId())
                 .createdAt(order.getCreatedAt())
                 .build();
     }
@@ -33,6 +34,7 @@ public class OrderMapper {
                 .totalPrice(order.getTotalPrice())
                 .userId(order.getUser().getId())
                 .name(order.getUser().getName())
+                .wallet(order.getUser().getWallet().getId())
                 .address(order.getUser().getAddress().getId())
                 .createdAt(order.getCreatedAt())
                 .productsIds(order.getProducts().stream().map(ProductMapper::toDTO).collect(Collectors.toSet()))

@@ -30,8 +30,9 @@ public class User {
 
     private Boolean isAdmin;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Wallet> wallets = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "wallet_id", referencedColumnName = "id")
+    private Wallet wallet;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
