@@ -82,7 +82,7 @@ public class AddressServiceTest {
             //Arrange
             User user = mock(User.class);
 
-            AddressRequest walletRequest = mock(AddressRequest.class);
+            AddressRequest addressRequest = mock(AddressRequest.class);
 
             Address address = mock(Address.class);
 
@@ -91,7 +91,7 @@ public class AddressServiceTest {
             addressMapper.when(() -> AddressMapper.toAddress(any(AddressRequest.class))).thenReturn(address);
 
             //Act
-            addressService.create(walletRequest);
+            addressService.create(addressRequest);
 
             //Assert
             verify(addressRepository).save(address);
@@ -164,6 +164,48 @@ public class AddressServiceTest {
         assertEquals(expectedError, actualError.getMessage());
 
     }
+
+    @Test
+    public void shouldDeleteAddress_whenRequestIsValid(){
+
+
+            //Arrange
+            Address address = mock(Address.class);
+
+            when(addressRepository.findById(anyLong())).thenReturn(Optional.of(address));
+
+
+
+            //Act
+            addressService.delete(address.getId());
+
+            //Assert
+
+            verify(addressRepository).delete(address);
+
+    }
+
+
+
+    @Test
+    public void shouldDeleteAddress_whenRequestIsNotValid(){
+
+        //Arrange
+        Address address = mock(Address.class);
+
+        when(addressRepository.findById(any())).thenReturn(Optional.empty());
+
+
+        String expectedError = "Endereço com o ID " + address.getId() + " não encontrado";
+        //Act
+        BadRequestException actualError = assertThrows(BadRequestException.class, () -> addressService.delete(address.getId()));
+
+        //Assert
+        assertEquals(expectedError, actualError.getMessage());
+
+    }
+
+
 
 
 

@@ -2,6 +2,7 @@ package com.supermaket.GMarket.entities;
 
 import com.supermaket.GMarket.entity.Address;
 import com.supermaket.GMarket.entity.User;
+import com.supermaket.GMarket.entity.Wallet;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -26,7 +27,7 @@ public class AddressEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
         Address address = Address.builder()
@@ -59,7 +60,7 @@ public class AddressEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
         Address address = Address.builder()

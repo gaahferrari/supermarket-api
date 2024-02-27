@@ -61,7 +61,7 @@ public class WalletService {
     public void delete(Long walletId) {
         Optional<Wallet> walletOptional = walletRepository.findById(walletId);
         if (walletOptional.isEmpty()) {
-            throw new BadRequestException("Endereço com o ID " + walletId + " não encontrado");
+            throw new BadRequestException("Carteira com o ID " + walletId + " não encontrado");
         }
         Wallet wallet = walletOptional.get();
 

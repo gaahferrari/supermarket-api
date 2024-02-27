@@ -171,7 +171,7 @@ public class OrderEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
         Order order = Order.builder()
@@ -202,7 +202,7 @@ public class OrderEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
         Order order = Order.builder()
@@ -236,7 +236,7 @@ public class OrderEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
         Order order = Order.builder()
@@ -285,7 +285,7 @@ public class OrderEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
         Order order = Order.builder()

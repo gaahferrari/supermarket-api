@@ -36,7 +36,8 @@ public class CategoryService {
         List<Category> categories = categoryRepository.findAll();
         if (categories.isEmpty()) {
             throw new BadRequestException("A lista de categorias está vazia");
-        } return CategoryMapper.toListResponse(categories);
+        }
+        return CategoryMapper.toListResponse(categories);
     }
 
     @Transactional
@@ -51,7 +52,7 @@ public class CategoryService {
 
     public BaseBodyResponse<Category> create(@Valid CategoryRequest request) {
         Category category = categoryRepository.save(CategoryMapper.toCategory(request));
-        if (category != null){
+        if (category != null) {
             return CategoryMapper.toResponse(category);
         } else {
             throw new BadRequestException("Erro ao cadastrar o usuário");
@@ -78,7 +79,7 @@ public class CategoryService {
         Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
         Optional<Product> productOptional = productRepository.findById(productId);
 
-        if(categoryOptional.isEmpty() || productOptional.isEmpty()){
+        if (categoryOptional.isEmpty() || productOptional.isEmpty()) {
             throw new NotFoundException("Categoria ou ingrediente não foi encontrado");
         }
         Category category = categoryOptional.get();
@@ -89,21 +90,25 @@ public class CategoryService {
         return CategoryMapper.toResponseProducts(categories);
     }
 
-    public void removeProduct(Long userId, Long productId) {
-       Category category = categoryRepository.findById(userId).orElse(null);
-        Product product = productRepository.findById(productId).orElse(null);
-        if (category.getProducts().isEmpty()) {
-            throw new IllegalStateException("A lista de produtos favoritos está vazia");
+    public void removeProduct(Long CategoryId, Long productId) {
+        Optional<Category> categoryOptional = categoryRepository.findById(CategoryId);
+        Optional<Product> productOptional = productRepository.findById(productId);
+        if (categoryOptional.isEmpty()) {
+            throw new BadRequestException("A lista de produtos favoritos está vazia");
         }
-
-            category.removeProduct(product);
-            categoryRepository.save(category);
-        }
-
-public CategoryProductDTO getByCategory(String name){
-        return CategoryMapper.toProductsDTO(categoryRepository.findCategoryByName(name));
-}
-
+        Category category = categoryOptional.get();
+        Product product = productOptional.get();
+        category.removeProduct(product);
+        categoryRepository.save(category);
     }
+
+    public CategoryProductDTO getByCategory(String name) {
+        if (name != null) {
+            return CategoryMapper.toProductsDTO(categoryRepository.findCategoryByName(name));
+        } else {
+            throw new NotFoundException("O nome desta categoria não existe");
+        }
+    }
+}
 
 

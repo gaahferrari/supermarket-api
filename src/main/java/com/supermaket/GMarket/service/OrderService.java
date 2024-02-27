@@ -69,7 +69,7 @@ public class OrderService {
         Optional<Order> orderOptional = orderRepository.findById(orderId);
 
         if(productOptional.isEmpty() || orderOptional.isEmpty()){
-            throw new NotFoundException("Pizza ou pedido não foi encontrado");
+            throw new NotFoundException("Produto ou pedido não foi encontrado");
         }
         Product product = productOptional.get();
         Order order = orderOptional.get();
@@ -83,12 +83,13 @@ public class OrderService {
     }
 
     public void removeProduct(Long orderId, Long productId) {
-        Order order = orderRepository.findById(orderId).orElse(null);
-        Product product = productRepository.findById(productId).orElse(null);
-        if (order.getProducts().isEmpty()) {
-            throw new IllegalStateException("A lista de produtos favoritos está vazia");
+        Optional<Order> orderOptional = orderRepository.findById(orderId);
+        Optional<Product> productOptional = productRepository.findById(productId);
+        if (orderOptional.isEmpty()) {
+            throw new BadRequestException("A lista de produtos favoritos está vazia");
         }
-
+        Order order = orderOptional.get();
+        Product product = productOptional.get();
         order.removeProduct(product);
         double totalProductPrice = order.getProducts().stream().mapToDouble(Product::getPrice).sum();
         order.setTotalPrice(totalProductPrice);
@@ -100,7 +101,7 @@ public class OrderService {
         if (order != null) {
             return OrderMapper.toResponse(order);
         } else {
-            throw new NotFoundException("Carteira não encontrada com o ID: " + orderID);
+            throw new NotFoundException("Pedido não encontrado com o ID: " + orderID);
         }
     }
 }

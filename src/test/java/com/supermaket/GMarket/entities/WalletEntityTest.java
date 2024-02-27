@@ -27,7 +27,7 @@ public class WalletEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
         Wallet wallet = Wallet.builder()
@@ -59,7 +59,7 @@ public class WalletEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
         Wallet wallet = Wallet.builder()

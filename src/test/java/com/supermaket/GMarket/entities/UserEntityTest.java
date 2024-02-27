@@ -1,9 +1,6 @@
 package com.supermaket.GMarket.entities;
 
-import com.supermaket.GMarket.entity.Address;
-import com.supermaket.GMarket.entity.Order;
-import com.supermaket.GMarket.entity.Product;
-import com.supermaket.GMarket.entity.User;
+import com.supermaket.GMarket.entity.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -45,7 +42,7 @@ public class UserEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
         user.addFavoriteProduct(product);
@@ -85,7 +82,7 @@ public class UserEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
         String expectedError = "A lista de produtos favoritos está vazia";
@@ -124,7 +121,7 @@ public class UserEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
         //Act
@@ -162,7 +159,7 @@ public class UserEntityTest {
                 .favoriteProducts(new ArrayList<>())
                 .isAdmin(false)
                 .orders(new ArrayList<>())
-                .wallets(new ArrayList<>())
+                .wallet(new Wallet())
                 .build();
 
 
