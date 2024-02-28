@@ -43,7 +43,7 @@ public class UserService {
 
     public BaseBodyResponse<User> create(@Valid UserRequest request) {
         User user = userRepository.save(UserMapper.toUser(request));
-        if (user != null){
+        if (user != null) {
             return UserMapper.toResponse(user);
         } else {
             throw new BadRequestException("Erro ao cadastrar o usuário");
@@ -53,7 +53,7 @@ public class UserService {
 
     public BaseBodyResponse<UserOrderDTO> getByOrder(Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
-        if(userOptional.isEmpty()){
+        if (userOptional.isEmpty()) {
             throw new NotFoundException("Usuário com o id: " + userId + " não foi encontrado");
         } else {
             User user = userOptional.get();
@@ -72,13 +72,13 @@ public class UserService {
         }
     }
 
-    public BaseBodyResponse<UserProductsDTO>  addFavoriteProduct(Long userId, Long productId) {
+    public BaseBodyResponse<UserProductsDTO> addFavoriteProduct(Long userId, Long productId) {
         Optional<User> user = userRepository.findById(userId);
 
         Optional<Product> product = productRepository.findById(productId);
 
         if (product.isEmpty() || user.isEmpty()) {
-            throw new IllegalArgumentException("Usuário ou produto não foram encontrados");
+            throw new NotFoundException("Usuário ou produto não foram encontrados");
         }
 
         User user1 = user.get();
@@ -91,20 +91,22 @@ public class UserService {
     }
 
     public void removeFavoriteProduct(Long userId, Long productId) {
-        User user = userRepository.findById(userId).orElse(null);
-        Product product = productRepository.findById(productId).orElse(null);
-        if (user.getFavoriteProducts().isEmpty()) {
-            throw new IllegalStateException("A lista de produtos favoritos está vazia");
-        }
+        Optional<User> userOptional = userRepository.findById(userId);
+        Optional<Product> productOptional = productRepository.findById(productId);
 
-        if (user.removeFavoriteProduct(product)) {
-            userRepository.save(user);
+        if (userOptional.isEmpty() || productOptional.isEmpty()) {
+            throw new BadRequestException("A lista de produtos favoritos está vazia");
         }
+        User user = userOptional.get();
+        Product product = productOptional.get();
+        user.removeFavoriteProduct(product);
+        userRepository.save(user);
+
     }
 
     public BaseBodyResponse<UserProductsDTO> getByProducts(Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
-        if(userOptional.isEmpty()){
+        if (userOptional.isEmpty()) {
             throw new NotFoundException("Usuário com o id: " + userId + " não foi encontrado");
         } else {
             User user = userOptional.get();
@@ -113,12 +115,11 @@ public class UserService {
     }
 
 
-
     public void deleteUser(Long userId) {
         User user = userRepository.findById(userId).orElse(null);
         if (user != null) {
             Wallet wallet = user.getWallet();
-            if  (wallet != null) {
+            if (wallet != null) {
                 walletRepository.delete(wallet);
             }
             Address address = user.getAddress();
@@ -139,9 +140,13 @@ public class UserService {
     }
 
 
-    public UserDTO getByUserNameAndPassword (String userName, String password){
-        return UserMapper.toDTO(userRepository.findUserByUserNameAndPassword(userName, password));
-    }
+    public UserDTO getByUserNameAndPassword(String userName, String password) {
+        if (userName != null || password != null) {
+            return UserMapper.toDTO(userRepository.findUserByUserNameAndPassword(userName, password));
+        } else {
+            throw new BadRequestException("Erro ao tentar encontrar usuário e senha");
+        }
 
+    }
 }
 

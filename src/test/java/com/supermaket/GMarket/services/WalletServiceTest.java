@@ -1,18 +1,12 @@
 package com.supermaket.GMarket.services;
 
-import com.supermaket.GMarket.entity.Address;
-import com.supermaket.GMarket.entity.Category;
 import com.supermaket.GMarket.entity.User;
 import com.supermaket.GMarket.entity.Wallet;
 import com.supermaket.GMarket.exceptions.BadRequestException;
 import com.supermaket.GMarket.exceptions.NotFoundException;
-import com.supermaket.GMarket.mapper.AddressMapper;
-import com.supermaket.GMarket.mapper.CategoryMapper;
 import com.supermaket.GMarket.mapper.WalletMapper;
 import com.supermaket.GMarket.repository.UserRepository;
 import com.supermaket.GMarket.repository.WalletRepository;
-import com.supermaket.GMarket.request.AddressRequest;
-import com.supermaket.GMarket.request.CategoryRequest;
 import com.supermaket.GMarket.request.WalletRequest;
 import com.supermaket.GMarket.service.WalletService;
 import org.junit.jupiter.api.Test;

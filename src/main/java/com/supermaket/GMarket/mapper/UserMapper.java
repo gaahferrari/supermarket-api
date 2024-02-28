@@ -79,14 +79,14 @@ public class UserMapper {
     public static BaseBodyResponse<UserOrderDTO> toResponseOrderID(User user, List<Order> orders){
         return BaseBodyResponse.<UserOrderDTO>builder()
                 .company("G-Market")
-                .description("Pedidos do usuário: " + user.getUserName().toString())
+                .description("Pedidos do usuário")
                 .result(toOrdersDTO(user, orders)).build();
     }
 
     public static BaseBodyResponse<UserProductsDTO> toResponseProductID(User user){
         return BaseBodyResponse.<UserProductsDTO>builder()
                 .company("G-Market")
-                .description("Produtos favoritos do usuário: " + user.getUserName().toString())
+                .description("Produtos favoritos do usuário:" )
                 .result(toProductsDTO(user)).build();
     }
 
